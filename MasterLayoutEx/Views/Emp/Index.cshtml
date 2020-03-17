@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MasterLayoutPage1.cshtml";
+    
+}
+
+<h2>Index</h2>
+<p>@Html.ActionLink("Create New", "Create", "Emp")</p>
+@using (Html.BeginForm())
+{
+    if (Model != null)
+    {
+        <table>
+            <tr>
+                <td>Empno</td>
+                <td>Ename</td>
+                <td>Job</td>
+                <td>Mgr</td>
+                <td>Hiredate</td>
+                <td>Sal</td>
+                <td>Comm</td>
+                <td>Deptno</td>
+            </tr>
+            @foreach (var E in Model)
+            {
+        <tr>
+            <td>@E.EMPNO</td>
+            <td>@E.ENAME</td>
+            <td>@E.JOB</td>
+            <td>@E.MGR</td>
+            <td>@E.HIREDATE</td>
+            <td>@E.SAL</td>
+            <td>@E.COMM</td>
+            <td>@E.DEPTNO</td>
+            <td>
+                @Html.ActionLink("Edit Emp", "Edit", "Emp", new { id = E.EMPNO }, null)|
+            
+                @Html.ActionLink("Delete Emp", "Delete", "Emp", new { id = E.EMPNO },null)
+            </td>
+        </tr>
+
+            }
+        </table>
+        if (ViewBag.msg != null)
+        {
+            @ViewBag.msg;
+        }
+    }
+}
